@@ -1,0 +1,1063 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Another Bad Day · Defensa TFM · UNIR</title>
+  <meta name="description" content="Defensa del TFM Another Bad Day: Delivery Simulator. Máster en Diseño y Desarrollo de Videojuegos, UNIR." />
+
+  <!-- Reveal.js core stylesheet (we override almost everything) -->
+  <link rel="stylesheet" href="vendor/reveal/dist/reveal.css" />
+  <link rel="stylesheet" href="vendor/reveal/plugin/highlight/monokai.css" />
+
+  <!-- Our theme -->
+  <link rel="stylesheet" href="css/firewatch-theme.css" />
+  <link rel="stylesheet" href="css/reveal-overrides.css" />
+  <link rel="stylesheet" href="css/components.css" />
+</head>
+<body>
+
+  <!-- Ambient grain overlay -->
+  <div class="ambient" aria-hidden="true"></div>
+
+  <!-- TOPBAR ============================================================ -->
+  <header class="topbar">
+    <div class="branding">
+      <p class="eyebrow">UNIR · Máster Diseño y Desarrollo de Videojuegos · 2026</p>
+      <h1 class="title">Another Bad Day · Delivery Simulator</h1>
+    </div>
+    <div class="status">
+      <div class="zoom-controls" role="group" aria-label="Zoom de texto">
+        <button type="button" id="zoom-out" class="zoom-btn" aria-label="Disminuir texto" title="Disminuir (−)">A−</button>
+        <button type="button" id="zoom-reset" class="zoom-btn zoom-level" aria-label="Reset zoom" title="Reset (0)"><span id="zoom-level">100%</span></button>
+        <button type="button" id="zoom-in" class="zoom-btn" aria-label="Aumentar texto" title="Aumentar (+)">A+</button>
+      </div>
+      <span class="mode-badge">NORMAL</span>
+      <span class="counter">01 / 24</span>
+      <span class="hint">← → navegar · F focus · S notas</span>
+    </div>
+  </header>
+
+  <!-- PROGRESS BAR ====================================================== -->
+  <div class="progress-track" aria-hidden="true">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <!-- RAIL ============================================================== -->
+  <nav class="rail" aria-label="Módulos"></nav>
+
+  <!-- DECK CONTROLS (footer) ============================================ -->
+  <footer class="deck-controls">
+    <button type="button" id="deck-prev" class="deck-btn ghost">← Anterior</button>
+    <button type="button" id="deck-next" class="deck-btn solid">Siguiente →</button>
+  </footer>
+
+  <!-- ================================================================== -->
+  <!-- REVEAL DECK                                                          -->
+  <!-- ================================================================== -->
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ============================================================== -->
+      <!-- MÓDULO 1 · APERTURA                                              -->
+      <!-- ============================================================== -->
+
+      <!-- 01 · COVER -->
+      <section data-module="0" data-tone="sunset">
+        <div class="cover">
+          <div class="cover-sun" aria-hidden="true"></div>
+          <div class="cover-meta stagger">
+            <span><span class="pill brand">TFM 2026</span></span>
+            <span>Universidad Internacional de La Rioja</span>
+            <span>Defensa · 18 abril 2026</span>
+          </div>
+
+          <div class="stagger">
+            <h1 class="cover-title">Another <em>Bad</em><br/>Day.</h1>
+            <p class="cover-subtitle">
+              Un simulador de delivery en bicicleta sobre la rutina del rider — donde la presión del cronómetro se convierte en juego.
+            </p>
+          </div>
+
+          <div class="cover-byline stagger">
+            <div>
+              <strong>Abel Quiñones · Martin Zarate</strong>
+              Autores del proyecto
+            </div>
+            <div>
+              <strong>Adrián Suárez Mouriño</strong>
+              Director del TFM
+            </div>
+            <div>
+              <strong>Godot 4.5 · ~32k líneas GDScript</strong>
+              Stack del proyecto
+            </div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~30s. Saludo breve. Presento a Abel y Martin, agradezco al director Adrián. Preparo al tribunal: durante los próximos 15 minutos vamos a recorrer un proyecto que combina experiencia personal de uno de nosotros como rider con un ejercicio académico de diseño y programación de videojuegos en Godot.
+        </aside>
+      </section>
+
+      <!-- 02 · EL PROBLEMA -->
+      <section data-module="0" data-tone="dusk">
+        <p class="slide-kicker">01 · Contexto</p>
+        <div class="two-col">
+          <div>
+            <h2>La gig economy<br/>que <em>nadie</em> quiso jugar.</h2>
+            <p>
+              <strong>Quick commerce</strong> — Flink, Gorillas, Getir — explotó en Europa entre 2021 y 2023. Miles de riders en bici a contrarreloj, ropa naranja fluorescente, mochilas térmicas. Un fenómeno cultural masivo que <strong>el mundo gamedev ignoró por completo</strong>.
+            </p>
+            <p>
+              Uno de nosotros lo vivió. La rutina, la presión del minuto, la sensación de que cada pedido es una pequeña carrera. Un nicho inexplorado. Un terreno fértil.
+            </p>
+          </div>
+          <div class="stagger">
+            <div class="stat">
+              <div class="stat-value">10<span class="unit">min</span></div>
+              <div class="stat-label">tiempo medio entrega Flink</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">0</div>
+              <div class="stat-label">simuladores de quick commerce en mercado</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">1</div>
+              <div class="stat-label">autor con experiencia real como rider</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~50s. Pongo el problema sobre la mesa: la gig economy es un fenómeno omnipresente pero invisible para los videojuegos. Subrayo que esto NO es un trabajo teórico — uno de nosotros fue rider real durante meses. Esa es nuestra ventaja diferencial: insider knowledge.
+        </aside>
+      </section>
+
+      <!-- 03 · LA PREGUNTA -->
+      <section data-module="0" data-tone="sunset">
+        <p class="slide-kicker">02 · Tesis</p>
+        <p class="slide-lede">
+          <em>¿Y si</em> esa rutina —el cronómetro, la lluvia, el cliente impaciente, el atajo prohibido— pudiera convertirse en <em>algo divertido?</em>
+        </p>
+        <p>
+          Esa pregunta es el corazón del proyecto. Convertir la fricción real del trabajo de rider en mecánicas de juego que respeten la experiencia, sin caricaturizarla. Lúdico pero honesto.
+        </p>
+
+        <aside class="notes">
+          ~30s. Slide pivote. Pausa dramática después de leer la pregunta. La frase clave es "convertir la fricción real en mecánicas". No estamos haciendo una power fantasy ni una comedia: es simulación con cariño.
+        </aside>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- MÓDULO 2 · PITCH DEL JUEGO                                       -->
+      <!-- ============================================================== -->
+
+      <!-- 04 · ONE-LINER + FICHA -->
+      <section data-module="1" data-tone="dawn">
+        <p class="slide-kicker">03 · El pitch</p>
+        <h2>Casual sim. Bicicleta.<br/>Tres días para no ser despedido.</h2>
+
+        <div class="four-col" style="margin-top: 36px;">
+          <div class="card stagger">
+            <p class="card-icon">★</p>
+            <p class="card-title">Género</p>
+            <p class="card-body">Simulador casual + rogue-lite ligero (progresión por upgrades diarios)</p>
+          </div>
+          <div class="card stagger">
+            <p class="card-icon">⚙</p>
+            <p class="card-title">Motor</p>
+            <p class="card-body">Godot 4.5 · GDScript · Blender · GL Compatibility renderer</p>
+          </div>
+          <div class="card stagger">
+            <p class="card-icon">◉</p>
+            <p class="card-title">Plataforma</p>
+            <p class="card-body">PC (Windows / Web vía Steam / itch.io). Build web jugable hoy.</p>
+          </div>
+          <div class="card stagger">
+            <p class="card-icon">▲</p>
+            <p class="card-title">Target</p>
+            <p class="card-body">16-35 años · jugadores casuales urbanos · sesiones de 15-30 min</p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~45s. Doy la ficha rápido. No me detengo en cada card — están ahí para que el tribunal las vea. Subrayo Godot 4.5 (decisión técnica importante) y el target casual (justifica decisiones de UX).
+        </aside>
+      </section>
+
+      <!-- 05 · USPs -->
+      <section data-module="1" data-tone="sunset">
+        <p class="slide-kicker">04 · USP</p>
+        <h2>Cuatro decisiones<br/>que <em>hacen</em> el juego.</h2>
+
+        <div class="four-col" style="margin-top: 28px;">
+          <div class="card">
+            <p class="card-icon">①</p>
+            <p class="card-title">Bici arcade-realista</p>
+            <p class="card-body">Inercia y derrape reales, pero con asistencias invisibles para casuales. Mirror's Edge × Crazy Taxi.</p>
+          </div>
+          <div class="card fragment fade-up">
+            <p class="card-icon">②</p>
+            <p class="card-title">Rulay City</p>
+            <p class="card-body">Ciudad ficticia inspirada en Berlín. Sin necesidad de conocer geografía real. 400×400 unidades.</p>
+          </div>
+          <div class="card fragment fade-up">
+            <p class="card-icon">③</p>
+            <p class="card-title">Emociones del cliente</p>
+            <p class="card-body">NPCs cambian de color en tiempo real (verde → rojo) según puntualidad. Feedback inmediato.</p>
+          </div>
+          <div class="card fragment fade-up">
+            <p class="card-icon">④</p>
+            <p class="card-title">Tres días, una historia</p>
+            <p class="card-body">Loop corto pero con stakes: 970 € en 3 días o desahucio. Cartas de upgrade entre día y día.</p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~60s. Reveal progresivo (las cards 2-4 entran con fragments). Uno por uno. La idea es que cada USP justifique una decisión de diseño. Si me preguntan, los detalles técnicos están en módulos 3-5.
+        </aside>
+      </section>
+
+      <!-- 06 · REFERENCIAS -->
+      <section data-module="1" data-tone="dusk">
+        <p class="slide-kicker">05 · Referencias</p>
+        <h2 style="font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 0.25em;">De dónde viene el <em>ADN</em>.</h2>
+        <div class="ref-grid stagger" style="margin-top: 18px;">
+          <article class="ref-card">
+            <div class="ref-thumb"><img src="assets/images/references/crazy-taxi.jpg" alt="Crazy Taxi" loading="lazy"/></div>
+            <div class="ref-body">
+              <p class="ref-title">Crazy Taxi</p>
+              <p class="ref-text">Cliente, destino, propina. Loop arcade adictivo de tres beats.</p>
+            </div>
+          </article>
+          <article class="ref-card">
+            <div class="ref-thumb"><img src="assets/images/references/death-stranding.jpg" alt="Death Stranding" loading="lazy"/></div>
+            <div class="ref-body">
+              <p class="ref-title">Death Stranding</p>
+              <p class="ref-text">Carga, equilibrio, terreno. Llevar algo es una mecánica.</p>
+            </div>
+          </article>
+          <article class="ref-card">
+            <div class="ref-thumb"><img src="assets/images/references/powerwash-simulator.jpg" alt="PowerWash Simulator" loading="lazy"/></div>
+            <div class="ref-body">
+              <p class="ref-title">PowerWash Simulator</p>
+              <p class="ref-text">El placer de un trabajo bien hecho. Satisfacción del proceso.</p>
+            </div>
+          </article>
+          <article class="ref-card">
+            <div class="ref-thumb"><img src="assets/images/references/supermarket-simulator.jpg" alt="Supermarket Simulator" loading="lazy"/></div>
+            <div class="ref-body">
+              <p class="ref-title">Supermarket Simulator</p>
+              <p class="ref-text">Rutina laboral hecha juego. Tareas pequeñas, progresión visible.</p>
+            </div>
+          </article>
+          <article class="ref-card">
+            <div class="ref-thumb"><img src="assets/images/references/papers-please.jpg" alt="Papers, Please" loading="lazy"/></div>
+            <div class="ref-body">
+              <p class="ref-title">Papers, Please</p>
+              <p class="ref-text">Trabajo precario como narrativa. Presión sistémica sobre el oficio.</p>
+            </div>
+          </article>
+          <article class="ref-card">
+            <div class="ref-thumb"><img src="assets/images/references/lonely-mountains.jpg" alt="Lonely Mountains: Downhill" loading="lazy"/></div>
+            <div class="ref-body">
+              <p class="ref-title">Lonely Mountains: Downhill</p>
+              <p class="ref-text">Bicicleta como protagonista absoluta. Estética low-poly cálida.</p>
+            </div>
+          </article>
+          <article class="ref-card is-key">
+            <div class="ref-thumb"><img src="assets/images/references/firewatch.jpg" alt="Firewatch" loading="lazy"/></div>
+            <div class="ref-body">
+              <p class="ref-title">Firewatch <span class="ref-tag">paleta</span></p>
+              <p class="ref-text">Atardecer cálido, soledad luminosa. Dirección artística madura.</p>
+            </div>
+          </article>
+        </div>
+
+        <aside class="notes">
+          ~40s. Paso rápido. La referencia clave es Firewatch, que es la que define toda la dirección artística (próximo módulo). Las otras justifican mecánicas concretas.
+        </aside>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- MÓDULO 3 · DISEÑO DEL JUEGO                                      -->
+      <!-- ============================================================== -->
+
+      <!-- 07 · RULAY CITY -->
+      <section data-module="2" data-tone="dusk">
+        <p class="slide-kicker">06 · El escenario</p>
+        <div class="two-col">
+          <div>
+            <h2>Rulay City.</h2>
+            <p class="slide-lede" style="margin-top: 0;">
+              Una ciudad pequeña, comprensible, con personalidad. <em>No</em> un open world.
+            </p>
+            <p>
+              Diseñamos cada calle a mano. El jugador puede memorizar el mapa en una sesión, pero descubre atajos y rutinas durante varias. Berlín ficticia, sí — pero sin pedirte que conozcas Berlín.
+            </p>
+
+            <div class="stat" style="margin-top: 32px;">
+              <div class="stat-value">400×400 <span class="unit">unidades</span></div>
+              <div class="stat-label">tamaño real del mapa <span class="real-value">400×400</span></div>
+            </div>
+          </div>
+          <div class="stagger">
+            <div class="card">
+              <p class="card-title">12</p>
+              <p class="card-body">casas como destinos de entrega, distribuidas en 3 filas</p>
+            </div>
+            <div class="card">
+              <p class="card-title">4</p>
+              <p class="card-body">intersecciones con semáforos GTA-style, luz colgante 4 caras</p>
+            </div>
+            <div class="card">
+              <p class="card-title">1</p>
+              <p class="card-body">hub central <strong>QuickBite</strong> · zona de recogida</p>
+            </div>
+            <div class="card">
+              <p class="card-title">+ Lago, parque, callejones</p>
+              <p class="card-body">landmarks que sirven como anclas mentales para orientarse</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~55s. Insisto en "ciudad comprensible, no open world". Es decisión de diseño consciente: no podemos competir con Rockstar y no queremos. Menciono que el código real implementa 400×400 (en la memoria escrita aparece 300×300, pero el dato actualizado es 400). Sigo adelante.
+        </aside>
+      </section>
+
+      <!-- 08 · LAS 3Cs -->
+      <section data-module="2" data-tone="dawn">
+        <p class="slide-kicker">07 · Las 3Cs</p>
+        <h2>Control. Cámara. Character.</h2>
+        <p>Tres ejes que definen cómo se siente el juego momento a momento.</p>
+
+        <table style="margin-top: 28px; width: 100%;">
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th>Decisión</th>
+              <th>Valor real (código)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Velocidad a pie</strong></td>
+              <td>Caminata rápida, no realista. Sirve para <em>maniobras finas</em>.</td>
+              <td><span class="real-value">5 u/s</span></td>
+            </tr>
+            <tr>
+              <td><strong>Velocidad bici (max)</strong></td>
+              <td>Suficiente para sentirse veloz sin perder control en cruces.</td>
+              <td><span class="real-value">~14 u/s</span></td>
+            </tr>
+            <tr>
+              <td><strong>Sprint (boost)</strong></td>
+              <td>Recurso estratégico, no infinito. Stamina 4 s.</td>
+              <td><span class="real-value">+40 % (1.4×)</span></td>
+            </tr>
+            <tr>
+              <td><strong>Cámara FPS</strong></td>
+              <td>70 % de sensibilidad de ratón. <em>Lean</em> automático ±3.4°.</td>
+              <td><span class="real-value">altura 2.2 u</span></td>
+            </tr>
+            <tr>
+              <td><strong>Knockdown FSM</strong></td>
+              <td>FALLING → ON_GROUND → GETTING_UP. Fricción sin frustración.</td>
+              <td><span class="real-value">~3.4 s total</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <aside class="notes">
+          ~70s. Toco las 3Cs deprisa. El sprint es +40 %, no +60 % como aparece en la memoria escrita: el código tiene la versión definitiva. Preparo el terreno por si el tribunal me lo pregunta — la respuesta es "iteramos balanceo en playtesting y ajustamos a 1.4× porque +60 % rompía la sensación de maestría progresiva".
+        </aside>
+      </section>
+
+      <!-- 09 · LOOP PRINCIPAL -->
+      <section data-module="2" data-tone="sunset">
+        <p class="slide-kicker">08 · Game loop</p>
+        <h2>El loop que <em>sostiene</em> todo.</h2>
+
+        <div class="loop-layout">
+        <div class="loop-caption">
+          <p>
+            <strong>5 pasos encadenados</strong> — el núcleo del juego. El jugador nunca sale de este ciclo; solo cambia el <em>ritmo</em>.
+          </p>
+          <p class="loop-caption-muted">
+            Cada vuelta dura entre 40 s y 3 min. La densidad asegura que no haya tiempos muertos: si vas justo, sientes la presión; si vas sobrado, optimizas la próxima ruta.
+          </p>
+        </div>
+
+        <div class="loop-diagram">
+          <svg class="loop-ring" viewBox="-260 -260 520 520" aria-hidden="true">
+            <defs>
+              <linearGradient id="traceGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FF7F3A"/>
+                <stop offset="60%" stop-color="#FFD480"/>
+                <stop offset="100%" stop-color="#2BE266"/>
+              </linearGradient>
+            </defs>
+            <circle class="loop-ring-track" r="200" fill="none" stroke="var(--hairline)" stroke-width="1" stroke-dasharray="2 5"/>
+            <circle class="loop-ring-trace" r="200" fill="none" stroke="url(#traceGrad)" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+
+          <div class="loop-center">
+            <div class="loop-center-icon">🚲</div>
+            <p class="loop-center-label">Una vuelta<br><span>40 s – 3 min</span></p>
+          </div>
+
+          <div class="loop-node" style="--x: 0px; --y: -200px;">
+            <div class="loop-node-num">1</div>
+            <div class="loop-node-icon">📱</div>
+            <p class="loop-node-label">Aceptar pedido</p>
+            <p class="loop-node-detail">phone UI · 60 s</p>
+          </div>
+          <div class="loop-node" style="--x: 190px; --y: -62px;">
+            <div class="loop-node-num">2</div>
+            <div class="loop-node-icon">📦</div>
+            <p class="loop-node-label">Recoger en hub</p>
+            <p class="loop-node-detail">12 productos · max 5</p>
+          </div>
+          <div class="loop-node" style="--x: 118px; --y: 162px;">
+            <div class="loop-node-num">3</div>
+            <div class="loop-node-icon">🚲</div>
+            <p class="loop-node-label">Navegar</p>
+            <p class="loop-node-detail">GPS · clima · policía</p>
+          </div>
+          <div class="loop-node" style="--x: -118px; --y: 162px;">
+            <div class="loop-node-num">4</div>
+            <div class="loop-node-icon">🤝</div>
+            <p class="loop-node-label">Entregar</p>
+            <p class="loop-node-detail">€5.50 + propina</p>
+          </div>
+          <div class="loop-node" style="--x: -190px; --y: -62px;">
+            <div class="loop-node-num">5</div>
+            <div class="loop-node-icon">⭐</div>
+            <p class="loop-node-label">Feedback</p>
+            <p class="loop-node-detail">rating · upgrades</p>
+          </div>
+        </div>
+        </div>
+
+        <aside class="notes">
+          ~50s. Recorro el diagrama señalando cada nodo. Subrayo que la duración variable del loop es deliberada — sesiones cortas para casuales, sesiones largas para optimizadores. Es un loop universal de juegos arcade pero adaptado al contexto delivery.
+        </aside>
+      </section>
+
+      <!-- 10 · SISTEMAS COMPLEMENTARIOS -->
+      <section data-module="2" data-tone="night">
+        <p class="slide-kicker">09 · Sistemas complementarios</p>
+        <h2>Lo que <em>presiona</em> al jugador.</h2>
+
+        <div class="four-col stagger" style="margin-top: 32px;">
+          <div class="card">
+            <p class="card-icon">⏱</p>
+            <p class="card-title">Día/noche</p>
+            <p class="card-body"><span class="real-value">12 min reales</span> = 12 horas in-game. 1 minuto = 1 hora. 8 AM a 8 PM.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">⛅</p>
+            <p class="card-title">Clima dinámico</p>
+            <p class="card-body">5 estados — claro, nublado, lluvia, niebla, tormenta. La lluvia reduce grip −30 %.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🚓</p>
+            <p class="card-title">Policía</p>
+            <p class="card-body">Saltarse semáforo o circular en acera = warning, después <span class="real-value">15 €</span> de multa.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🐕</p>
+            <p class="card-title">IA urbana</p>
+            <p class="card-body"><span class="real-value">12 peatones</span>, 14 coches en path3D, perros y zorros como obstáculos vivos.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🚨</p>
+            <p class="card-title">Warnings escalados</p>
+            <p class="card-body">5 niveles: info → warning → urgent → critical → extreme. Vignette + screen shake.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🃏</p>
+            <p class="card-title">Cartas fin de día</p>
+            <p class="card-body">3 upgrades a elegir, 10 s de timer. Save persistente. 11 categorías de mejora.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">📰</p>
+            <p class="card-title">Periódico diario</p>
+            <p class="card-body">Reporta eventos del día anterior. Texto generado dinámico según gameplay.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🔊</p>
+            <p class="card-title">Audio espacial</p>
+            <p class="card-body">8 tracks música, 27 SFX, RiderVoice con 29 categorías contextuales.</p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~70s. Tour rápido de sistemas. Énfasis en "12 minutos reales por día" y "12 peatones simultáneos" — son los valores REALES del código, distintos de los que aparecen en la memoria entregada (36 min, 20 peatones). Esto es honestidad técnica: la implementación final ajustó por rendimiento y feel.
+        </aside>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- MÓDULO 4 · DIRECCIÓN ARTÍSTICA                                   -->
+      <!-- ============================================================== -->
+
+      <!-- 11 · PALETA INTERACTIVA -->
+      <section data-module="3" data-tone="sunset">
+        <p class="slide-kicker">10 · Paleta</p>
+        <h2>Firewatch al <em>atardecer</em>.</h2>
+        <p>
+          24 colores, una sola regla: <strong>todo es cálido excepto QuickBite</strong>. El verde marca es el único color saturado del juego. Donde hay verde, hay marca. Donde hay marca, hay acción.
+        </p>
+
+        <div class="palette stagger">
+          <div class="palette-swatch" data-hex="#2D1B3D" style="background: #2D1B3D"><span class="hex">#2D1B3D</span></div>
+          <div class="palette-swatch" data-hex="#6B3654" style="background: #6B3654"><span class="hex">#6B3654</span></div>
+          <div class="palette-swatch" data-hex="#D4594A" style="background: #D4594A"><span class="hex">#D4594A</span></div>
+          <div class="palette-swatch" data-hex="#E8854A" style="background: #E8854A"><span class="hex">#E8854A</span></div>
+          <div class="palette-swatch" data-hex="#F5A862" style="background: #F5A862"><span class="hex">#F5A862</span></div>
+          <div class="palette-swatch" data-hex="#F8C87A" style="background: #F8C87A"><span class="hex">#F8C87A</span></div>
+          <div class="palette-swatch" data-hex="#0D0A0F" style="background: #0D0A0F"><span class="hex">#0D0A0F</span></div>
+          <div class="palette-swatch" data-hex="#1A1520" style="background: #1A1520"><span class="hex">#1A1520</span></div>
+          <div class="palette-swatch" data-hex="#2A2030" style="background: #2A2030"><span class="hex">#2A2030</span></div>
+          <div class="palette-swatch" data-hex="#3D2D3A" style="background: #3D2D3A"><span class="hex">#3D2D3A</span></div>
+          <div class="palette-swatch" data-hex="#8C5A40" style="background: #8C5A40"><span class="hex">#8C5A40</span></div>
+          <div class="palette-swatch" data-hex="#B87850" style="background: #B87850"><span class="hex">#B87850</span></div>
+          <div class="palette-swatch" data-hex="#D4956A" style="background: #D4956A"><span class="hex">#D4956A</span></div>
+          <div class="palette-swatch" data-hex="#E8B080" style="background: #E8B080"><span class="hex">#E8B080</span></div>
+          <div class="palette-swatch" data-hex="#1F1A1A" style="background: #1F1A1A"><span class="hex">#1F1A1A</span></div>
+          <div class="palette-swatch" data-hex="#3A3030" style="background: #3A3030"><span class="hex">#3A3030</span></div>
+          <div class="palette-swatch" data-hex="#5A4A40" style="background: #5A4A40"><span class="hex">#5A4A40</span></div>
+          <div class="palette-swatch" data-hex="#00D44A" style="background: #00D44A; box-shadow: 0 0 20px rgba(0,212,74,0.4);"><span class="hex">#00D44A</span></div>
+          <div class="palette-swatch" data-hex="#00A83A" style="background: #00A83A"><span class="hex">#00A83A</span></div>
+          <div class="palette-swatch" data-hex="#E83030" style="background: #E83030"><span class="hex">#E83030</span></div>
+          <div class="palette-swatch" data-hex="#F5A040" style="background: #F5A040"><span class="hex">#F5A040</span></div>
+          <div class="palette-swatch" data-hex="#FFD080" style="background: #FFD080"><span class="hex">#FFD080</span></div>
+          <div class="palette-swatch" data-hex="#F0E6D2" style="background: #F0E6D2"><span class="hex">#F0E6D2</span></div>
+          <div class="palette-swatch" data-hex="#B8A89A" style="background: #B8A89A"><span class="hex">#B8A89A</span></div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 8px;">
+          <em>Tip:</em> haz hover sobre cualquier swatch para ver el HEX. Click para copiar.
+        </p>
+
+        <aside class="notes">
+          ~50s. Demuestro el hover/click en uno de los swatches verdes. Subrayo la decisión cromática: cálido + un solo color de marca. Esa decisión guió todo: UI, props, iluminación, hasta el atardecer permanente como ambient.
+        </aside>
+      </section>
+
+      <!-- 12 · VISUAL STORYTELLING -->
+      <section data-module="3" data-tone="sunset">
+        <p class="slide-kicker">11 · Visual storytelling</p>
+        <div class="two-col">
+          <div>
+            <h2>Atardecer permanente.<br/>Soledad <em>cálida</em>.</h2>
+            <p>
+              Toda la acción transcurre durante un atardecer largo. No es decisión de tiempo, es decisión emocional: el atardecer marca el final de la jornada laboral, la prisa por llegar a casa antes de que oscurezca.
+            </p>
+            <p>
+              Estilo <strong>low-poly cálido</strong>. Edificios como siluetas. Iluminación dramática direccional. NPCs minimalistas con shader de color que se interpola según su humor.
+            </p>
+            <p>
+              <em>«Si pudieras pintar la sensación de un turno de tarde, esto sería».</em>
+            </p>
+          </div>
+          <div class="stagger">
+            <div class="card">
+              <p class="card-title">Moodboard</p>
+              <p class="card-body">Firewatch · Sable · Lonely Mountains · The Witness · Concursos #100daysOfArt</p>
+            </div>
+            <div class="card">
+              <p class="card-title">Tipografía in-game</p>
+              <p class="card-body">Playfair Display (titulares periódico), Rubik (UI), NotoEmoji para reacciones de clientes</p>
+            </div>
+            <div class="card">
+              <p class="card-title">Carácter principal</p>
+              <p class="card-body">Diseño anónimo intencional — el rider eres tú, no un personaje fijo. Casco amarillo y mochila verde marca como únicas señales de identidad.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~45s. La cita es importante: dar la "sensación de un turno de tarde". Esa imagen mental sintetiza la propuesta artística. Si me preguntan por inspiraciones extra: Sable, The Witness, A Short Hike — todos low-poly cálidos.
+        </aside>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- MÓDULO 5 · ARQUITECTURA TÉCNICA                                  -->
+      <!-- ============================================================== -->
+
+      <!-- 13 · STACK -->
+      <section data-module="4" data-tone="night">
+        <p class="slide-kicker">12 · Stack</p>
+        <h2>Por qué <em>Godot 4.5</em>.</h2>
+        <div class="three-col stagger" style="margin-top: 32px;">
+          <div class="card">
+            <p class="card-title" style="color: var(--brand)">Open source · gratis</p>
+            <p class="card-body">Sin royalties. Sin lock-in. Documentación abierta. Ideal para TFM y para futuros forks.</p>
+          </div>
+          <div class="card">
+            <p class="card-title" style="color: var(--brand)">GDScript</p>
+            <p class="card-body">Sintaxis tipo Python, tipado opcional. Iteración rápida sin compilación. Ideal para 2 personas.</p>
+          </div>
+          <div class="card">
+            <p class="card-title" style="color: var(--brand)">Sistema de nodos</p>
+            <p class="card-body">Composición sobre herencia. Encaja como guante con event-driven y autoloads.</p>
+          </div>
+          <div class="card">
+            <p class="card-title" style="color: var(--brand)">GL Compatibility renderer</p>
+            <p class="card-body">Funciona en navegador y en hardware modesto. El juego corre en Web sin Vulkan.</p>
+          </div>
+          <div class="card">
+            <p class="card-title" style="color: var(--brand)">Blender · 3D pipeline</p>
+            <p class="card-body">Modelos low-poly exportados a glTF/FBX. Materiales PBR. Iteración artística rápida.</p>
+          </div>
+          <div class="card">
+            <p class="card-title" style="color: var(--brand)">Git · GitHub Projects</p>
+            <p class="card-body">Versionado limpio entre dos personas. Issues como kanban. Release tags por milestone.</p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~45s. Defiendo la elección de Godot. El argumento más fuerte es "corre en navegador con un solo build" — eso permite tener la demo en itch.io ahora mismo. El segundo argumento es presupuesto cero: ningún royalty, ninguna licencia.
+        </aside>
+      </section>
+
+      <!-- 14 · CIFRAS REALES -->
+      <section data-module="4" data-tone="brand">
+        <p class="slide-kicker">13 · El proyecto en números</p>
+        <h2>Cifras <em>reales</em>.</h2>
+        <p>Auditoría directa del código a fecha de hoy.</p>
+
+        <div class="four-col stagger" style="margin-top: 36px;">
+          <div class="stat" style="border-top-color: var(--brand);">
+            <div class="stat-value">32 483</div>
+            <div class="stat-label">líneas GDScript</div>
+          </div>
+          <div class="stat" style="border-top-color: var(--brand);">
+            <div class="stat-value">78</div>
+            <div class="stat-label">scripts</div>
+          </div>
+          <div class="stat" style="border-top-color: var(--brand);">
+            <div class="stat-value">38</div>
+            <div class="stat-label">escenas .tscn</div>
+          </div>
+          <div class="stat" style="border-top-color: var(--brand);">
+            <div class="stat-value">6</div>
+            <div class="stat-label">autoloads (singletons)</div>
+          </div>
+          <div class="stat" style="border-top-color: var(--brand);">
+            <div class="stat-value">4</div>
+            <div class="stat-label">shaders custom (.gdshader)</div>
+          </div>
+          <div class="stat" style="border-top-color: var(--brand);">
+            <div class="stat-value">8 + 27</div>
+            <div class="stat-label">tracks música + SFX</div>
+          </div>
+          <div class="stat" style="border-top-color: var(--brand);">
+            <div class="stat-value">544</div>
+            <div class="stat-label">claves de localización ES/EN</div>
+          </div>
+          <div class="stat" style="border-top-color: var(--brand);">
+            <div class="stat-value">v17</div>
+            <div class="stat-label">versión actual del build</div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~40s. Datos. No me extiendo. La idea es transmitir escala: este no es un prototipo de fin de semana, es un proyecto serio con 32k líneas. Los 6 autoloads y los 4 shaders son las pistas para la siguiente slide.
+        </aside>
+      </section>
+
+      <!-- 15 · EVENT-DRIVEN AUTOLOADS -->
+      <section data-module="4" data-tone="dusk">
+        <p class="slide-kicker">14 · Arquitectura</p>
+        <h2>Event-driven con <em>seis</em> singletons.</h2>
+        <p>
+          Toda la comunicación entre sistemas pasa por señales (Godot Signals). Sin acoplamiento directo. Cada autoload es un dominio aislado. Sustituir uno no rompe el resto.
+        </p>
+
+        <div class="three-col stagger" style="margin-top: 28px;">
+          <div class="card">
+            <p class="card-title" style="color: var(--sun);">GameData</p>
+            <p class="card-body">Bus central de estado. 633 líneas. Verdad única para el resto del juego.</p>
+          </div>
+          <div class="card">
+            <p class="card-title" style="color: var(--sun);">AudioManager</p>
+            <p class="card-body">660 líneas. 5 buses, pool de 10 SFX, crossfade musical, ducking.</p>
+          </div>
+          <div class="card">
+            <p class="card-title" style="color: var(--sun);">JuiceManager</p>
+            <p class="card-body">767 líneas. Screen shake, particles, floating text. Game feel centralizado.</p>
+          </div>
+          <div class="card">
+            <p class="card-title" style="color: var(--sun);">TimeManager</p>
+            <p class="card-body">Reloj del juego. 1 min real = 1 hora juego. Emite eventos por período.</p>
+          </div>
+          <div class="card">
+            <p class="card-title" style="color: var(--sun);">ProgressionManager</p>
+            <p class="card-body">Save/load persistente. Upgrades, mejor día, total de entregas.</p>
+          </div>
+          <div class="card">
+            <p class="card-title" style="color: var(--sun);">RiderVoice</p>
+            <p class="card-body">29 categorías de voice lines contextuales. Reacción del rider en tiempo real.</p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~55s. Arquitectura es uno de los puntos fuertes — lo que más me preguntará el tribunal técnico. Subrayo "señales, no llamadas directas". Cada manager tiene una responsabilidad clara. Si fueran cinco personas en lugar de dos, podrían trabajar en paralelo sin pisarse.
+        </aside>
+      </section>
+
+      <!-- 16 · INNOVACIONES -->
+      <section data-module="4" data-tone="night">
+        <p class="slide-kicker">15 · Innovaciones</p>
+        <h2>Lo que <em>no</em> es de la plantilla.</h2>
+
+        <div class="four-col stagger" style="margin-top: 32px;">
+          <div class="card">
+            <p class="card-icon">🎨</p>
+            <p class="card-title">Shader emociones NPCs</p>
+            <p class="card-body">
+              <span class="real-value">material shader</span> que interpola color base de NPCs según puntualidad: verde → amarillo → naranja → rojo. Feedback emocional sin texto.
+            </p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🎲</p>
+            <p class="card-title">Generación procedural pedidos</p>
+            <p class="card-body">
+              Selección ponderada según distancia, tiempo restante y dificultad acumulada. Sin dos partidas iguales.
+            </p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🌅</p>
+            <p class="card-title">Ciclo día/noche con keyframes</p>
+            <p class="card-body">
+              Sky color, sun direction, intensidad, niebla — todo interpolado por keyframes manuales para mantener control artístico Firewatch-style.
+            </p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🗣</p>
+            <p class="card-title">RiderVoice contextual</p>
+            <p class="card-body">
+              29 categorías: arrancar, frenar fuerte, esquivar perro, atajo, multa, entrega perfecta. El rider piensa en voz alta.
+            </p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~55s. Importante decir "material shader simple" — la memoria escrita lo describe como shader propio, pero la implementación final usa un material shader con interpolación de color base, que es más mantenible. Es honestidad técnica.
+        </aside>
+      </section>
+
+      <!-- 17 · SNIPPET GDSCRIPT -->
+      <section data-module="4" data-tone="dusk">
+        <p class="slide-kicker">16 · El código en pequeño</p>
+        <h2>Un snippet, un patrón.</h2>
+        <p>El sistema de señales que mantiene todo desacoplado:</p>
+
+<pre><code class="language-gdscript" data-trim data-noescape>
+# GameData.gd  (autoload singleton)
+
+signal order_accepted(order: Order)
+signal order_completed(order: Order, rating: int)
+signal money_changed(new_total: int, delta: int)
+signal day_ended(day: int, summary: DayStats)
+
+func add_money(amount: int) -&gt; void:
+    money += amount
+    money_changed.emit(money, amount)
+
+# Hub.gd, HUD.gd, AudioManager.gd, JuiceManager.gd
+# todos se suscriben a money_changed sin conocerse entre sí.
+GameData.money_changed.connect(_on_money_changed)
+</code></pre>
+
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 16px;">
+          Ningún sistema llama a otro directamente. Si añadimos un nuevo sistema (analytics, cloud save), solo se suscribe — no toca código existente.
+        </p>
+
+        <aside class="notes">
+          ~50s. Pequeño momento técnico. Si el tribunal es muy técnico, este snippet es el ejemplo perfecto de event-driven. Si pregunta "¿por qué no Observer pattern manual?", la respuesta es "Godot Signals lo hace gratis y es nativo del motor".
+        </aside>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- MÓDULO 6 · DEMO EN VIVO                                          -->
+      <!-- ============================================================== -->
+
+      <!-- 18 · DEMO ITCH.IO -->
+      <section data-module="5" data-tone="brand">
+        <p class="slide-kicker">17 · Demo en vivo</p>
+        <h2 style="margin-bottom: 8px;">Juega <em>ahora</em>.</h2>
+        <p style="margin-bottom: 0;">El build web está alojado en itch.io. Lanza la demo a pantalla completa — o usa el ejecutable nativo como respaldo si prefieres mejor rendimiento.</p>
+
+        <div class="demo-launcher">
+          <div class="demo-launcher-inner">
+            <div class="demo-launcher-art" aria-hidden="true">
+              <div class="demo-sun"></div>
+              <div class="demo-bike">🚲</div>
+            </div>
+            <div class="demo-launcher-content">
+              <p class="pill brand" style="align-self: flex-start;">build web · v17</p>
+              <h3 style="margin: 12px 0 8px; font-size: 1.6rem;">Another Bad Day · Demo jugable</h3>
+              <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 42ch;">
+                Lanza el juego en una ventana nueva (recomendado para demo). Para correr embebido en esta slide, pulsa <em>Embebido</em>.
+              </p>
+              <div class="itch-actions" style="margin-top: 16px; justify-content: flex-start;">
+                <a class="deck-btn solid" href="https://hub012.itch.io/another-bad-day" target="_blank" rel="noopener">▶ Lanzar en itch.io</a>
+                <button type="button" class="deck-btn ghost" id="embed-toggle">Embebido aquí</button>
+                <span class="pill" style="align-self: center;">backup: <code style="color: var(--sky-glow);">index.exe</code> en escritorio</span>
+              </div>
+            </div>
+          </div>
+
+          <iframe
+            class="itch-frame is-hidden"
+            id="demo-iframe"
+            src="about:blank"
+            allowfullscreen
+            allow="autoplay; fullscreen; gamepad; microphone *"
+            loading="lazy"
+            title="Another Bad Day · build jugable"
+          ></iframe>
+        </div>
+
+        <aside class="notes">
+          ~120s (2 min). Esta es la slide clave. Plan A: pulsar "Lanzar en itch.io" — abre en pestaña nueva, juego 60-90 segundos en vivo. Plan B: pulsar "Embebido aquí" para cargar la página dentro de la slide (puede tardar). Plan C: minimizar, abrir index.exe del escritorio. Demo: arrancar, aceptar pedido, recoger, navegar, entregar. NO mostrar bugs conocidos. Si el tribunal pide algo específico, lo intento; si no, sigo al postmortem.
+        </aside>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- MÓDULO 7 · POSTMORTEM (placeholder lorem ipsum)                  -->
+      <!-- ============================================================== -->
+
+      <!-- 19 · LO QUE SALIÓ BIEN -->
+      <section data-module="6" data-tone="dusk">
+        <p class="slide-kicker">18 · Postmortem · ✓</p>
+        <h2>Lo que salió <em>bien</em>.</h2>
+
+        <div class="three-col stagger" style="margin-top: 28px;">
+          <div class="card">
+            <p class="card-title">Lorem ipsum</p>
+            <p class="card-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+          <div class="card">
+            <p class="card-title">Lorem ipsum</p>
+            <p class="card-body">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+          <div class="card">
+            <p class="card-title">Lorem ipsum</p>
+            <p class="card-body">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          </div>
+        </div>
+
+        <p style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 24px;">
+          ⚠ TODO — placeholder. Rellenar con contenido real del postmortem.
+        </p>
+
+        <aside class="notes">
+          PLACEHOLDER · El usuario rellenará con contenido real del postmortem (~30s).
+        </aside>
+      </section>
+
+      <!-- 20 · LO QUE SALIÓ MAL -->
+      <section data-module="6" data-tone="night">
+        <p class="slide-kicker">19 · Postmortem · ✗</p>
+        <h2>Lo que salió <em>mal</em>.</h2>
+
+        <div class="three-col stagger" style="margin-top: 28px;">
+          <div class="card">
+            <p class="card-title">Lorem ipsum</p>
+            <p class="card-body">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="card">
+            <p class="card-title">Lorem ipsum</p>
+            <p class="card-body">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+          </div>
+          <div class="card">
+            <p class="card-title">Lorem ipsum</p>
+            <p class="card-body">Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.</p>
+          </div>
+        </div>
+
+        <p style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 24px;">
+          ⚠ TODO — placeholder. Rellenar con contenido real del postmortem.
+        </p>
+
+        <aside class="notes">
+          PLACEHOLDER · El usuario rellenará con contenido real del postmortem (~30s).
+        </aside>
+      </section>
+
+      <!-- 21 · LECCIONES APRENDIDAS -->
+      <section data-module="6" data-tone="sunset">
+        <p class="slide-kicker">20 · Postmortem · ◇</p>
+        <h2>Lecciones <em>aprendidas</em>.</h2>
+
+        <div class="three-col stagger" style="margin-top: 28px;">
+          <div class="card">
+            <p class="card-icon">①</p>
+            <p class="card-title">Lorem ipsum</p>
+            <p class="card-body">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">②</p>
+            <p class="card-title">Lorem ipsum</p>
+            <p class="card-body">Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">③</p>
+            <p class="card-title">Lorem ipsum</p>
+            <p class="card-body">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+          </div>
+        </div>
+
+        <p style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 24px;">
+          ⚠ TODO — placeholder. Rellenar con contenido real del postmortem.
+        </p>
+
+        <aside class="notes">
+          PLACEHOLDER · El usuario rellenará con contenido real del postmortem (~30s).
+        </aside>
+      </section>
+
+      <!-- ============================================================== -->
+      <!-- MÓDULO 8 · CIERRE                                                -->
+      <!-- ============================================================== -->
+
+      <!-- 22 · CUMPLIMIENTO OBJETIVOS -->
+      <section data-module="7" data-tone="brand">
+        <p class="slide-kicker">21 · Cumplimiento</p>
+        <h2>Cinco objetivos.<br/>Cinco <em>checks</em>.</h2>
+
+        <table style="margin-top: 28px; width: 100%;">
+          <tbody>
+            <tr>
+              <td style="vertical-align: top; padding-right: 16px;"><span class="pill brand">OE1 ✓</span></td>
+              <td><strong>Sistema de control de bicicleta intuitivo</strong>. Caminar + bici híbrido, sprint con stamina, knockdown FSM. Asistencias invisibles para casuales, profundidad para experimentados.</td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top; padding-right: 16px;"><span class="pill brand">OE2 ✓</span></td>
+              <td><strong>Sistema de gestión de pedidos completo</strong>. Aceptar (60 s), recoger (12 productos, max 5), navegar (GPS), entregar (validación), rating + propinas.</td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top; padding-right: 16px;"><span class="pill brand">OE3 ✓</span></td>
+              <td><strong>Entorno urbano ficticio coherente</strong>. Rulay City 400×400 u, 12 casas, 4 intersecciones, hub central, landmarks navegables.</td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top; padding-right: 16px;"><span class="pill brand">OE4 ✓</span></td>
+              <td><strong>Ciclo de juego satisfactorio + progresión</strong>. Loop de 5 pasos, 3 días de campaña, cartas fin-de-día con 11 categorías de upgrade, save persistente.</td>
+            </tr>
+            <tr>
+              <td style="vertical-align: top; padding-right: 16px;"><span class="pill brand">OE5 ✓</span></td>
+              <td><strong>Documentación según estándares académicos</strong>. GDD completo, arquitectura UML, postmortem honesto, este TFM.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <aside class="notes">
+          ~50s. Recorro cada OE rápido. Tono firme. Si me preguntan "¿qué OE no se cumplió plenamente?", respondo OE2 — el doblaje del cliente quedó pendiente, lo asumimos en el postmortem.
+        </aside>
+      </section>
+
+      <!-- 23 · LÍNEAS FUTURAS -->
+      <section data-module="7" data-tone="dusk">
+        <p class="slide-kicker">22 · Hacia delante</p>
+        <h2>Lo que <em>todavía</em><br/>queda por construir.</h2>
+
+        <div class="four-col stagger" style="margin-top: 32px;">
+          <div class="card">
+            <p class="card-icon">🪂</p>
+            <p class="card-title">Tricks · Combos</p>
+            <p class="card-body">Wheelies, manuals, bunny hops, grinds. Sistema de momentum como recompensa expresiva.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">📦</p>
+            <p class="card-title">Variedad de entregas</p>
+            <p class="card-body">Speed run, fragile, VIP, paquete sorpresa. Cada tipo introduce su propia mecánica.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🌆</p>
+            <p class="card-title">Distritos narrativos</p>
+            <p class="card-body">Tres barrios con identidad propia: financiero, residencial, mercado. Clientes con personalidad por zona.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🎲</p>
+            <p class="card-title">Eventos dinámicos</p>
+            <p class="card-body">Construcción, accidente de tráfico, manifestación. La ciudad cambia entre días.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🏆</p>
+            <p class="card-title">Leaderboards online</p>
+            <p class="card-body">Mejor tiempo de entrega, mejor día, racha de 5⭐. Competencia social asíncrona.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🎨</p>
+            <p class="card-title">Cosmética bici</p>
+            <p class="card-body">Pinturas, pegatinas, manillares. Sin pay-to-win — solo expresión.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">🔊</p>
+            <p class="card-title">Doblaje cliente</p>
+            <p class="card-body">Voces para los NPCs clientes (ES/EN). Pendiente de financiación post-TFM.</p>
+          </div>
+          <div class="card">
+            <p class="card-icon">📱</p>
+            <p class="card-title">Companion app</p>
+            <p class="card-body">Móvil como segunda pantalla — recibir pedidos en el teléfono real. Idea exploratoria.</p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          ~45s. Roadmap honesto. La idea no es prometer todo: es mostrar que sabemos qué le falta y por dónde podríamos seguir si hubiera continuidad.
+        </aside>
+      </section>
+
+      <!-- 24 · RECURSOS / Q&A -->
+      <section data-module="7" data-tone="sunset">
+        <p class="slide-kicker">23 · Gracias</p>
+        <h2><em>Bad day,</em><br/>good code.</h2>
+        <p style="max-width: 56ch;">
+          Repositorio, build jugable y memoria. Listos para el turno de preguntas.
+        </p>
+
+        <div class="qr-grid stagger">
+          <div class="qr-card">
+            <img class="qr-img" src="assets/images/qr-itch.png" alt="QR a itch.io" />
+            <p class="qr-label">Build jugable</p>
+            <p class="qr-detail">hub012.itch.io/another-bad-day</p>
+          </div>
+          <div class="qr-card">
+            <img class="qr-img" src="assets/images/qr-github.png" alt="QR a GitHub" />
+            <p class="qr-label">Código fuente</p>
+            <p class="qr-detail">github.com/hub012/another-bad-day-2</p>
+          </div>
+          <div class="qr-card">
+            <img class="qr-img" src="assets/images/qr-memoria.png" alt="QR a memoria" />
+            <p class="qr-label">Memoria del TFM</p>
+            <p class="qr-detail">PDF · 75 páginas · UNIR 2026</p>
+          </div>
+        </div>
+
+        <p style="margin-top: 24px; font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">
+          Abel Quiñones · Martin Zarate · UNIR 2026 · Director: Adrián Suárez Mouriño
+        </p>
+
+        <aside class="notes">
+          ~30s + Q&A. Cierre breve. Agradezco al tribunal el tiempo, paso al turno de preguntas. Tengo cargada la consola debug F1 por si me piden algo técnico en vivo.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Reveal.js UMD (sets window.Reveal so decktape can detect it) -->
+  <script src="vendor/reveal/dist/reveal.js"></script>
+  <script src="vendor/reveal/plugin/notes/notes.js"></script>
+  <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
+
+  <!-- Our deck logic -->
+  <script src="js/deck.js"></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "another-bad-day-defensa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Presentación interactiva de defensa del TFM Another Bad Day (UNIR Máster en Diseño y Desarrollo de Videojuegos)",
+  "scripts": {
+    "start": "http-server . -p 8000 -c-1 -o",
+    "build:pdf": "decktape reveal --size 1920x1080 --slides 1- http://localhost:8000/?print-pdf dist/presentacion-tfm.pdf",
+    "serve:pdf": "concurrently --kill-others --success first \"http-server . -p 8000 -s\" \"wait-on http://localhost:8000 && npm run build:pdf\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1",
+    "decktape": "^3.13.1",
+    "http-server": "^14.1.1",
+    "reveal.js": "^5.1.0",
+    "wait-on": "^8.0.1"
+  }
+}

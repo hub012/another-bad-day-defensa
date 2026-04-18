@@ -1,0 +1,215 @@
+/* =========================================================================
+   REVEAL.JS OVERRIDES — Adapta el chrome del framework al tema Firewatch
+   ========================================================================= */
+
+/* Killing default reveal theme styles */
+.reveal-viewport {
+  background: var(--bg-deep) !important;
+}
+
+/* Slide layout: each section is a full-bleed canvas */
+.reveal .slides section {
+  width: 100%;
+  height: 100%;
+  padding: var(--slide-padding);
+  padding-left: calc(var(--rail-width) + var(--slide-padding));
+  padding-top: calc(var(--topbar-height) + 32px);
+  box-sizing: border-box;
+  overflow: hidden;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Default: when no section.has-bg-* class, fall back to deep bg */
+.reveal .slides section:not([data-tone]) {
+  background: var(--bg-deep);
+}
+
+/* Tone-based ambient gradients — VIVID like the actual game art */
+.reveal .slides section[data-tone="dawn"] {
+  background:
+    radial-gradient(ellipse 90% 60% at 75% 15%, rgba(255, 176, 102, 0.55), transparent 60%),
+    radial-gradient(ellipse 80% 70% at 20% 100%, rgba(181, 57, 90, 0.45), transparent 65%),
+    linear-gradient(160deg, #3D2563 0%, #1F1A35 70%);
+}
+
+.reveal .slides section[data-tone="sunset"] {
+  background:
+    radial-gradient(ellipse 100% 70% at 78% 22%, rgba(255, 139, 71, 0.65), transparent 60%),
+    radial-gradient(ellipse 90% 80% at 15% 90%, rgba(181, 57, 90, 0.5), transparent 65%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255, 79, 46, 0.35), transparent 70%),
+    linear-gradient(165deg, #3D2563 0%, #2A1F3D 55%, #1F1A35 100%);
+}
+
+.reveal .slides section[data-tone="dusk"] {
+  background:
+    radial-gradient(ellipse 80% 50% at 80% 10%, rgba(181, 57, 90, 0.5), transparent 65%),
+    radial-gradient(ellipse 60% 50% at 10% 95%, rgba(31, 61, 82, 0.55), transparent 60%),
+    linear-gradient(170deg, #3D2563 0%, #1F1A35 100%);
+}
+
+.reveal .slides section[data-tone="night"] {
+  background:
+    radial-gradient(ellipse 90% 40% at 50% 0%, rgba(181, 57, 90, 0.48), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 90% 100%, rgba(31, 61, 82, 0.5), transparent 65%),
+    linear-gradient(180deg, #2A1F3D 0%, #1A1428 100%);
+}
+
+.reveal .slides section[data-tone="brand"] {
+  background:
+    radial-gradient(ellipse 80% 60% at 100% 0%, rgba(43, 226, 102, 0.28), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 0% 100%, rgba(255, 168, 88, 0.32), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255, 139, 71, 0.18), transparent 70%),
+    linear-gradient(135deg, #2A1F3D 0%, #1A1428 100%);
+}
+
+/* Print/PDF mode: simplify backgrounds */
+.print-pdf .reveal .slides section {
+  background: var(--bg-deep);
+}
+
+/* Lists */
+.reveal ul,
+.reveal ol {
+  display: block;
+  margin: 0 0 1em;
+  padding-left: 1.2em;
+}
+
+.reveal ul li,
+.reveal ol li {
+  margin: 0.4em 0;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+.reveal ul li::marker {
+  color: var(--sunset-2);
+}
+
+/* Inline code */
+.reveal code {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--bg-elevated);
+  color: var(--sky-glow);
+  padding: 0.12em 0.4em;
+  border-radius: 4px;
+  border: 1px solid var(--hairline);
+}
+
+/* Code blocks */
+.reveal pre {
+  width: 100%;
+  margin: 1em 0;
+  font-size: 0.7em;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.reveal pre code {
+  display: block;
+  background: var(--bg-panel);
+  color: var(--text-primary);
+  padding: 1.4em 1.6em;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  line-height: 1.55;
+  max-height: 460px;
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+/* Tables */
+.reveal table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.9rem;
+  width: auto;
+}
+
+.reveal table th,
+.reveal table td {
+  padding: 0.6em 1em;
+  text-align: left;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.reveal table th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sunset-3);
+}
+
+/* Hide default reveal controls (we use custom topbar) */
+.reveal .controls { display: none; }
+
+/* Reveal progress bar — hide built-in, use our custom */
+.reveal .progress { display: none; }
+
+/* Slide number — hide built-in */
+.reveal .slide-number { display: none; }
+
+/* Background transitions */
+.reveal .backgrounds { background: var(--bg-deep); }
+
+/* Fragment styles */
+.reveal .fragment {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.reveal .fragment.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.reveal .fragment.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal .fragment.fade-right {
+  opacity: 0;
+  transform: translateX(-24px);
+}
+.reveal .fragment.fade-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Speaker notes */
+.reveal aside.notes {
+  display: none;
+}
+
+/* Focus mode: hide chrome */
+.focus-mode .topbar,
+.focus-mode .rail,
+.focus-mode .progress-track,
+.focus-mode .deck-controls {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.focus-mode .reveal .slides section {
+  padding-left: var(--slide-padding);
+  padding-top: var(--slide-padding);
+  transition: padding 0.4s ease;
+}
+
+/* Responsive — collapse rail on narrow viewports */
+@media (max-width: 1200px) {
+  .reveal .slides section {
+    padding-left: var(--slide-padding);
+  }
+  .rail {
+    transform: translateX(-100%);
+  }
+}

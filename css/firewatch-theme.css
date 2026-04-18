@@ -1,0 +1,164 @@
+/* =========================================================================
+   FIREWATCH SUNSET — Tema visual del TFM Another Bad Day
+   Paleta inspirada en la dirección artística del juego (atardecer urbano)
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Geist:wght@100..900&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  /* — Sky gradient (sunset) — VIVID, saturated like the in-game art — */
+  --sky-deep:        #1F1A35;
+  --sky-high:        #3D2563;
+  --sky-mid:         #B5395A;
+  --sky-low:         #FF5C3A;
+  --sky-horizon:     #FF8B47;
+  --sky-glow:        #FFB066;
+  --sun:             #FFD480;
+
+  /* — Surfaces — slightly warmer, less "dead black" — */
+  --bg-deep:         #1A1428;
+  --bg-panel:        #2A1F3D;
+  --bg-elevated:     #3D2D52;
+  --bg-overlay:      rgba(26, 20, 40, 0.82);
+  --hairline:        rgba(255, 176, 102, 0.22);
+
+  /* — Brand (único color saturado del juego) — punchy emerald — */
+  --brand:           #2BE266;
+  --brand-dim:       #1FA850;
+  --brand-glow:      rgba(43, 226, 102, 0.45);
+
+  /* — Sunset accents — */
+  --sunset-1:        #FF4F2E;
+  --sunset-2:        #FF7F3A;
+  --sunset-3:        #FFA858;
+  --warm-glow:       rgba(255, 139, 71, 0.32);
+
+  /* — Cool shadows (deep teal from buildings in shadow) — */
+  --shadow-cool:     #1F3D52;
+  --shadow-warm:     #3D1F30;
+
+  /* — Type — */
+  --text-primary:    #FFF1DC;
+  --text-secondary:  #D4BFA0;
+  --text-muted:      #8C7560;
+  --text-on-brand:   #0A1A0E;
+
+  /* — Feedback — */
+  --success:         #00D44A;
+  --warning:         #F5A040;
+  --danger:          #E83030;
+  --money:           #FFD080;
+
+  /* — Type families — */
+  --font-display:    'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+  --font-body:       'Geist', system-ui, sans-serif;
+  --font-serif:      'Fraunces', 'Times New Roman', serif;
+  --font-mono:       'JetBrains Mono', ui-monospace, monospace;
+
+  /* — Scale (compositional) — */
+  --rail-width:      280px;
+  --topbar-height:   72px;
+  --slide-padding:   72px;
+  --radius-sm:       6px;
+  --radius-md:       12px;
+  --radius-lg:       20px;
+  --radius-pill:     999px;
+}
+
+/* =========================================================================
+   GLOBAL RESET & BASE TYPOGRAPHY
+   ========================================================================= */
+
+html, body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-feature-settings: 'ss01', 'ss02', 'cv11';
+  letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.reveal {
+  font-family: var(--font-body);
+  font-size: 28px;
+  color: var(--text-primary);
+}
+
+.reveal .slides {
+  text-align: left;
+}
+
+/* === Headings === */
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-variation-settings: 'opsz' 96;
+  color: var(--text-primary);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  text-transform: none;
+  text-shadow: none;
+  margin: 0 0 0.4em;
+}
+
+.reveal h1 {
+  font-size: clamp(3.5rem, 7vw, 5.6rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  text-shadow: 0 1px 0 rgba(255, 220, 180, 0.08);
+}
+
+.reveal h2 {
+  font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+  font-weight: 600;
+  text-shadow: 0 1px 0 rgba(255, 220, 180, 0.05);
+}
+
+.reveal h3 {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 500;
+}
+
+.reveal p {
+  font-size: 1.08rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0 0 1em;
+  max-width: 56ch;
+}
+
+.reveal p strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.reveal em {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100;
+  color: var(--sky-glow);
+}
+
+.reveal a {
+  color: var(--brand);
+  text-decoration: none;
+  border-bottom: 1px solid var(--brand-glow);
+  transition: border-color 0.2s ease;
+}
+
+.reveal a:hover {
+  border-bottom-color: var(--brand);
+}
+
+/* — Selection — */
+::selection {
+  background: var(--brand);
+  color: var(--text-on-brand);
+}
+
+/* — Scrollbar (webkit) — */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb { background: var(--bg-elevated); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--sunset-2); }
