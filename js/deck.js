@@ -15,6 +15,40 @@ const MODULES = [
   { id: 7, title: 'Cierre' },
 ];
 
+/* Speaker per slide index (0-based). Modules:
+   1 Abel · 2/3/4 Martin · 5/6/7 Abel · 8.1 Martin · 8.2/8.3 Abel  */
+const SPEAKERS = [
+  'abel',   // 01 Cover                     - Módulo 1
+  'abel',   // 02 Problema                  - Módulo 1
+  'abel',   // 03 Tesis                     - Módulo 1
+  'martin', // 04 One-liner + ficha         - Módulo 2
+  'martin', // 05 USPs                      - Módulo 2
+  'martin', // 06 Referencias               - Módulo 2
+  'martin', // 07 Rulay City                - Módulo 3
+  'martin', // 08 Las 3Cs                   - Módulo 3
+  'martin', // 09 Game loop                 - Módulo 3
+  'martin', // 10 Sistemas complementarios  - Módulo 3
+  'martin', // 11 Paleta                    - Módulo 4
+  'martin', // 12 Visual storytelling       - Módulo 4
+  'abel',   // 13 Stack                     - Módulo 5
+  'abel',   // 14 Cifras                    - Módulo 5
+  'abel',   // 15 Autoloads                 - Módulo 5
+  'abel',   // 16 Innovaciones              - Módulo 5
+  'abel',   // 17 Snippet GDScript          - Módulo 5
+  'abel',   // 18 Demo en vivo              - Módulo 6
+  'abel',   // 19 Postmortem — OK           - Módulo 7
+  'abel',   // 20 Postmortem — mal          - Módulo 7
+  'abel',   // 21 Postmortem — lecciones    - Módulo 7
+  'martin', // 22 Cumplimiento OE           - Módulo 8.1
+  'abel',   // 23 Líneas futuras            - Módulo 8.2
+  'abel',   // 24 Recursos / Q&A            - Módulo 8.3
+];
+
+const SPEAKER_NAMES = {
+  abel:   'Abel',
+  martin: 'Martin',
+};
+
 /* === ZOOM STATE ====================================================== */
 
 const ZOOM_STEPS = [0.75, 0.85, 0.95, 1.0, 1.1, 1.25, 1.4];
@@ -104,6 +138,7 @@ Reveal.initialize({
   setupRail();
   setupTopbar();
   setupProgress();
+  updateSpeaker(Reveal.getIndices().h || 0);
   bindReveal();
 });
 
@@ -196,12 +231,39 @@ function updateZoomLabel() {
   }
 }
 
+/* === SPEAKER BADGE =================================================== */
+
+function updateSpeaker(idx) {
+  const badge = document.getElementById('speaker-badge');
+  const nameEl = document.getElementById('speaker-name');
+  if (!badge || !nameEl) return;
+
+  const speakerKey = SPEAKERS[idx] || SPEAKERS[0];
+  const speakerName = SPEAKER_NAMES[speakerKey] || '—';
+  const prevKey = badge.dataset.speaker;
+
+  if (prevKey === speakerKey) return;
+
+  if (prevKey) {
+    badge.classList.add('is-swapping');
+    setTimeout(() => {
+      badge.dataset.speaker = speakerKey;
+      nameEl.textContent = speakerName;
+      badge.classList.remove('is-swapping');
+    }, 180);
+  } else {
+    badge.dataset.speaker = speakerKey;
+    nameEl.textContent = speakerName;
+  }
+}
+
 /* === REVEAL EVENT BINDING ============================================ */
 
 function bindReveal() {
   Reveal.on('slidechanged', (event) => {
     const idx = Reveal.getIndices().h;
     updateProgress(idx);
+    updateSpeaker(idx);
 
     const total = document.querySelectorAll('.reveal .slides section').length;
     const counter = document.querySelector('.counter');

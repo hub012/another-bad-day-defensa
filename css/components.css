@@ -611,6 +611,99 @@
 }
 
 /* =========================================================================
+   SPEAKER BADGE — top-right per-slide, indicates who is speaking
+   ========================================================================= */
+
+.speaker-badge {
+  position: fixed;
+  top: calc(var(--topbar-height) + 14px);
+  right: 24px;
+  z-index: 98;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 6px 6px;
+  background: var(--bg-panel);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.speaker-silhouette {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  padding: 3px;
+  background: var(--bg-deep);
+  box-sizing: border-box;
+  color: var(--sunset-3);
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+.speaker-silhouette circle,
+.speaker-silhouette path {
+  fill: currentColor;
+}
+
+.speaker-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  gap: 2px;
+}
+
+.speaker-label {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.speaker-name {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--text-primary);
+  text-transform: none;
+}
+
+/* — Per-speaker accents — */
+.speaker-badge[data-speaker="abel"] {
+  border-color: rgba(255, 127, 58, 0.45);
+}
+.speaker-badge[data-speaker="abel"] .speaker-silhouette {
+  color: var(--sunset-2);
+  background: rgba(255, 127, 58, 0.12);
+}
+
+.speaker-badge[data-speaker="martin"] {
+  border-color: rgba(43, 226, 102, 0.4);
+}
+.speaker-badge[data-speaker="martin"] .speaker-silhouette {
+  color: var(--brand);
+  background: rgba(43, 226, 102, 0.12);
+}
+
+/* — Focus mode: hide badge along with other chrome — */
+.focus-mode .speaker-badge {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* — Transition on slide change (name swap) — */
+.speaker-badge.is-swapping {
+  transform: translateY(-4px);
+  opacity: 0;
+}
+
+/* =========================================================================
    REFERENCE CARDS (slide 6) — visual citations w/ Steam header thumbnails
    ========================================================================= */
 

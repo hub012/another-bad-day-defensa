@@ -11,9 +11,9 @@
   <link rel="stylesheet" href="vendor/reveal/plugin/highlight/monokai.css" />
 
   <!-- Our theme -->
-  <link rel="stylesheet" href="css/firewatch-theme.css?v=7" />
-  <link rel="stylesheet" href="css/reveal-overrides.css?v=7" />
-  <link rel="stylesheet" href="css/components.css?v=7" />
+  <link rel="stylesheet" href="css/firewatch-theme.css?v=8" />
+  <link rel="stylesheet" href="css/reveal-overrides.css?v=8" />
+  <link rel="stylesheet" href="css/components.css?v=8" />
 </head>
 <body>
 
@@ -45,6 +45,18 @@
 
   <!-- RAIL ============================================================== -->
   <nav class="rail" aria-label="Módulos"></nav>
+
+  <!-- SPEAKER BADGE ===================================================== -->
+  <div class="speaker-badge" id="speaker-badge" aria-hidden="true">
+    <svg class="speaker-silhouette" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="14" r="6.5"/>
+      <path d="M6 38 C6 28 11 24 20 24 C29 24 34 28 34 38 Z"/>
+    </svg>
+    <div class="speaker-meta">
+      <span class="speaker-label">Orador</span>
+      <span class="speaker-name" id="speaker-name">—</span>
+    </div>
+  </div>
 
   <!-- DECK CONTROLS (footer) ============================================ -->
   <footer class="deck-controls">
@@ -1058,6 +1070,6 @@ GameData.money_changed.connect(_on_money_changed)
   <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
 
   <!-- Our deck logic -->
-  <script src="js/deck.js"></script>
+  <script src="js/deck.js?v=8"></script>
 </body>
 </html>
