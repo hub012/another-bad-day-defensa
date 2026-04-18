@@ -616,17 +616,17 @@
 
 .speaker-badge {
   position: fixed;
-  top: calc(var(--topbar-height) + 14px);
-  right: 24px;
+  top: calc(var(--topbar-height) + 18px);
+  right: 32px;
   z-index: 98;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 12px 6px 6px;
+  gap: 12px;
+  padding: 10px 22px 10px 10px;
   background: var(--bg-panel);
-  border: 1px solid var(--hairline);
+  border: 2px solid var(--hairline);
   border-radius: var(--radius-pill);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
   transition: opacity 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   pointer-events: none;
   user-select: none;
@@ -634,10 +634,10 @@
 
 .speaker-silhouette {
   flex-shrink: 0;
-  width: 26px;
-  height: 26px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
-  padding: 3px;
+  padding: 6px;
   background: var(--bg-deep);
   box-sizing: border-box;
   color: var(--sunset-3);
@@ -653,42 +653,44 @@
   display: flex;
   flex-direction: column;
   line-height: 1;
-  gap: 2px;
+  gap: 4px;
 }
 
 .speaker-label {
   font-family: var(--font-mono);
-  font-size: 8px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
 .speaker-name {
   font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: -0.005em;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.012em;
   color: var(--text-primary);
   text-transform: none;
 }
 
 /* — Per-speaker accents — */
 .speaker-badge[data-speaker="abel"] {
-  border-color: rgba(255, 127, 58, 0.45);
+  border-color: rgba(255, 127, 58, 0.55);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(255, 127, 58, 0.15);
 }
 .speaker-badge[data-speaker="abel"] .speaker-silhouette {
   color: var(--sunset-2);
-  background: rgba(255, 127, 58, 0.12);
+  background: rgba(255, 127, 58, 0.16);
 }
 
 .speaker-badge[data-speaker="martin"] {
-  border-color: rgba(43, 226, 102, 0.4);
+  border-color: rgba(43, 226, 102, 0.5);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(43, 226, 102, 0.15);
 }
 .speaker-badge[data-speaker="martin"] .speaker-silhouette {
   color: var(--brand);
-  background: rgba(43, 226, 102, 0.12);
+  background: rgba(43, 226, 102, 0.16);
 }
 
 /* — Focus mode: hide badge along with other chrome — */
