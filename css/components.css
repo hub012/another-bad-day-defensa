@@ -615,9 +615,11 @@
    ========================================================================= */
 
 .ref-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   gap: 14px;
+  width: 100%;
+  align-items: stretch;
 }
 
 .ref-card {
