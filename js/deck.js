@@ -49,6 +49,11 @@ const SPEAKER_NAMES = {
   martin: 'Martin',
 };
 
+const SPEAKER_PHOTOS = {
+  abel:   'assets/images/speakers/abel.jpg',
+  martin: 'assets/images/speakers/martin.jpg',
+};
+
 /* === ZOOM STATE ====================================================== */
 
 const ZOOM_STEPS = [0.75, 0.85, 0.95, 1.0, 1.1, 1.25, 1.4];
@@ -237,24 +242,33 @@ function updateZoomLabel() {
 function updateSpeaker(idx) {
   const badge = document.getElementById('speaker-badge');
   const nameEl = document.getElementById('speaker-name');
+  const photoEl = document.getElementById('speaker-photo');
   if (!badge || !nameEl) return;
 
   const speakerKey = SPEAKERS[idx] || SPEAKERS[0];
   const speakerName = SPEAKER_NAMES[speakerKey] || '—';
+  const speakerPhoto = SPEAKER_PHOTOS[speakerKey] || '';
   const prevKey = badge.dataset.speaker;
 
   if (prevKey === speakerKey) return;
 
+  const apply = () => {
+    badge.dataset.speaker = speakerKey;
+    nameEl.textContent = speakerName;
+    if (photoEl && speakerPhoto) {
+      photoEl.src = speakerPhoto;
+      photoEl.alt = speakerName;
+    }
+  };
+
   if (prevKey) {
     badge.classList.add('is-swapping');
     setTimeout(() => {
-      badge.dataset.speaker = speakerKey;
-      nameEl.textContent = speakerName;
+      apply();
       badge.classList.remove('is-swapping');
     }, 180);
   } else {
-    badge.dataset.speaker = speakerKey;
-    nameEl.textContent = speakerName;
+    apply();
   }
 }
 
