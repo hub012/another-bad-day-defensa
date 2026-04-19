@@ -1308,8 +1308,8 @@
   position: absolute;
   top: 50%;
   right: 56px;
-  width: 46%;
-  max-width: 780px;
+  width: 42%;
+  max-width: 720px;
   aspect-ratio: 16 / 9;
   transform: translateY(-50%);
   object-fit: cover;
@@ -1325,9 +1325,32 @@
 /* Overlay no longer used — the video is small enough that text is unaffected */
 .cover-video-overlay { display: none; }
 
-/* Reduce the cover-sun a bit so it doesn't pile on top of the video */
+/* — Cover slide layout: stretch .cover to fill so meta/title/byline space out — */
+.reveal .slides section:has(> .cover-video) {
+  justify-content: stretch;
+}
+
+.reveal .slides section:has(> .cover-video) .cover {
+  flex: 1;
+  height: auto;
+  min-height: 0;
+}
+
+/* Reduce the sun and concentrate its glow upper-right (away from the byline) */
 .reveal .slides section:has(> .cover-video) .cover-sun {
-  opacity: 0.55;
+  opacity: 0.4;
+  width: 480px;
+  height: 480px;
+  top: 35%;
+  right: -40px;
+}
+
+/* Just text-shadow on the byline for legibility against any background */
+.reveal .slides section:has(> .cover-video) .cover-byline,
+.reveal .slides section:has(> .cover-video) .cover-byline strong {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 /* — Cover SUN ornament — vivid, glowing like the in-game sunset — */
