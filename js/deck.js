@@ -140,6 +140,7 @@ Reveal.initialize({
   setupProgress();
   updateSpeaker(Reveal.getIndices().h || 0);
   bindReveal();
+  handleSlideVideo(Reveal.getCurrentSlide(), null);
 });
 
 /* === RAIL ============================================================ */
@@ -257,6 +258,24 @@ function updateSpeaker(idx) {
   }
 }
 
+/* === DEMO VIDEO ====================================================== */
+
+function handleSlideVideo(currentSlide, prevSlide) {
+  if (prevSlide) {
+    prevSlide.querySelectorAll('video').forEach(v => { try { v.pause(); } catch (_) {} });
+  }
+  if (currentSlide) {
+    currentSlide.querySelectorAll('video').forEach(v => {
+      try {
+        v.muted = true;
+        v.currentTime = 0;
+        const p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      } catch (_) {}
+    });
+  }
+}
+
 /* === REVEAL EVENT BINDING ============================================ */
 
 function bindReveal() {
@@ -264,6 +283,7 @@ function bindReveal() {
     const idx = Reveal.getIndices().h;
     updateProgress(idx);
     updateSpeaker(idx);
+    handleSlideVideo(event.currentSlide, event.previousSlide);
 
     const total = document.querySelectorAll('.reveal .slides section').length;
     const counter = document.querySelector('.counter');
