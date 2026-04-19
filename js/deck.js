@@ -50,8 +50,8 @@ const SPEAKER_NAMES = {
 };
 
 const SPEAKER_PHOTOS = {
-  abel:   'assets/images/speakers/abel.jpg',
-  martin: 'assets/images/speakers/martin.jpg',
+  abel:   'assets/images/speakers/abel.jpg?v=2',
+  martin: 'assets/images/speakers/martin.jpg?v=2',
 };
 
 /* === ZOOM STATE ====================================================== */
