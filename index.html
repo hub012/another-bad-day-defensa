@@ -11,9 +11,9 @@
   <link rel="stylesheet" href="vendor/reveal/plugin/highlight/monokai.css" />
 
   <!-- Our theme -->
-  <link rel="stylesheet" href="css/firewatch-theme.css?v=9" />
-  <link rel="stylesheet" href="css/reveal-overrides.css?v=9" />
-  <link rel="stylesheet" href="css/components.css?v=9" />
+  <link rel="stylesheet" href="css/firewatch-theme.css?v=10" />
+  <link rel="stylesheet" href="css/reveal-overrides.css?v=10" />
+  <link rel="stylesheet" href="css/components.css?v=10" />
 </head>
 <body>
 
@@ -801,42 +801,32 @@ GameData.money_changed.connect(_on_money_changed)
       <!-- 18 · DEMO ITCH.IO -->
       <section data-module="5" data-tone="brand">
         <p class="slide-kicker">17 · Demo en vivo</p>
-        <h2 style="margin-bottom: 8px;">Juega <em>ahora</em>.</h2>
-        <p style="margin-bottom: 0;">El build web está alojado en itch.io. Lanza la demo a pantalla completa — o usa el ejecutable nativo como respaldo si prefieres mejor rendimiento.</p>
+        <h2 style="margin: 0 0 12px; font-size: clamp(1.8rem, 3vw, 2.6rem);">Juega <em>ahora</em>.</h2>
 
-        <div class="demo-launcher">
-          <div class="demo-launcher-inner">
-            <div class="demo-launcher-art" aria-hidden="true">
-              <div class="demo-sun"></div>
-              <div class="demo-bike">🚲</div>
-            </div>
-            <div class="demo-launcher-content">
-              <p class="pill brand" style="align-self: flex-start;">build web · v17</p>
-              <h3 style="margin: 12px 0 8px; font-size: 1.6rem;">Another Bad Day · Demo jugable</h3>
-              <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 42ch;">
-                Lanza el juego en una ventana nueva (recomendado para demo). Para correr embebido en esta slide, pulsa <em>Embebido</em>.
-              </p>
-              <div class="itch-actions" style="margin-top: 16px; justify-content: flex-start;">
-                <a class="deck-btn solid" href="https://hub012.itch.io/another-bad-day" target="_blank" rel="noopener">▶ Lanzar en itch.io</a>
-                <button type="button" class="deck-btn ghost" id="embed-toggle">Embebido aquí</button>
-                <span class="pill" style="align-self: center;">backup: <code style="color: var(--sky-glow);">index.exe</code> en escritorio</span>
-              </div>
-            </div>
+        <div class="demo-video-wrap">
+          <video
+            id="demo-video"
+            class="demo-video"
+            src="assets/video/gameplay.mp4"
+            muted
+            loop
+            playsinline
+            preload="auto"
+            controls
+            data-autoplay
+            autoplay
+            aria-label="Gameplay de Another Bad Day"
+          ></video>
+
+          <div class="demo-video-actions">
+            <a class="deck-btn solid" href="https://hub012.itch.io/another-bad-day" target="_blank" rel="noopener">▶ Lanzar build en itch.io</a>
+            <span class="pill brand">v17 · web</span>
+            <span class="pill">backup: <code style="color: var(--sky-glow);">index.exe</code> en escritorio</span>
           </div>
-
-          <iframe
-            class="itch-frame is-hidden"
-            id="demo-iframe"
-            src="about:blank"
-            allowfullscreen
-            allow="autoplay; fullscreen; gamepad; microphone *"
-            loading="lazy"
-            title="Another Bad Day · build jugable"
-          ></iframe>
         </div>
 
         <aside class="notes">
-          ~120s (2 min). Esta es la slide clave. Plan A: pulsar "Lanzar en itch.io" — abre en pestaña nueva, juego 60-90 segundos en vivo. Plan B: pulsar "Embebido aquí" para cargar la página dentro de la slide (puede tardar). Plan C: minimizar, abrir index.exe del escritorio. Demo: arrancar, aceptar pedido, recoger, navegar, entregar. NO mostrar bugs conocidos. Si el tribunal pide algo específico, lo intento; si no, sigo al postmortem.
+          ~120s (2 min). El video arranca solo al entrar al slide (loop, sin audio). Mientras corre, narro lo que se ve: aceptar pedido en el phone UI, recogida en el hub, navegación con peatones y coches, entrega y feedback. Si el tribunal pide algo específico, pulso "Lanzar en itch.io" para jugar en vivo. Plan C: index.exe en escritorio.
         </aside>
       </section>
 
@@ -1070,6 +1060,6 @@ GameData.money_changed.connect(_on_money_changed)
   <script src="vendor/reveal/plugin/highlight/highlight.js"></script>
 
   <!-- Our deck logic -->
-  <script src="js/deck.js?v=8"></script>
+  <script src="js/deck.js?v=10"></script>
 </body>
 </html>

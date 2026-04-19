@@ -1052,7 +1052,43 @@
 }
 
 /* =========================================================================
-   DEMO LAUNCHER (slide 18)
+   DEMO VIDEO (slide 18) — gameplay autoplay loop
+   ========================================================================= */
+
+.demo-video-wrap {
+  width: 100%;
+  max-width: 1320px;
+  margin: 8px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.demo-video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--brand);
+  background: #000;
+  box-shadow:
+    0 0 0 4px var(--brand-glow),
+    0 24px 64px rgba(0, 0, 0, 0.55);
+  display: block;
+  object-fit: contain;
+}
+
+.demo-video-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+/* =========================================================================
+   DEMO LAUNCHER (slide 18) — legacy, retained for the (now unused) iframe
    ========================================================================= */
 
 .demo-launcher {
