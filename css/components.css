@@ -1303,48 +1303,31 @@
   text-transform: none;
 }
 
-/* — Cover background video (gameplay loop) — */
+/* — Cover gameplay video — right-side decorative panel, not full bleed — */
 .cover-video {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  right: 56px;
+  width: 46%;
+  max-width: 780px;
+  aspect-ratio: 16 / 9;
+  transform: translateY(-50%);
   object-fit: cover;
-  z-index: 0;
-  pointer-events: none;
-  filter: saturate(1.05);
-}
-
-/* Overlay that darkens the video so the cover text reads cleanly */
-.cover-video-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, rgba(26, 20, 40, 0.88) 0%, rgba(26, 20, 40, 0.55) 45%, rgba(26, 20, 40, 0.25) 100%),
-    linear-gradient(180deg, rgba(26, 20, 40, 0.45) 0%, transparent 30%, transparent 70%, rgba(26, 20, 40, 0.55) 100%);
-}
-
-.reveal .slides section:has(> .cover-video) {
-  /* Allow video to bleed past the slide padding */
-  padding: 0 !important;
-}
-
-.reveal .slides section:has(> .cover-video) .cover {
-  height: 100%;
-  padding: var(--slide-padding);
-  padding-left: calc(var(--rail-width) + var(--slide-padding));
-  padding-top: calc(var(--topbar-height) + 32px);
-  box-sizing: border-box;
-  position: relative;
-  z-index: 1;
-}
-
-/* Cover sun: keep but reduce its presence so it complements rather than fights the video */
-.reveal .slides section:has(> .cover-video) .cover-sun {
-  opacity: 0.35;
+  border-radius: 14px;
+  opacity: 0.5;
+  filter: saturate(1.05) contrast(1.02);
   mix-blend-mode: screen;
+  z-index: 0;
+  pointer-events: none;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+/* Overlay no longer used — the video is small enough that text is unaffected */
+.cover-video-overlay { display: none; }
+
+/* Reduce the cover-sun a bit so it doesn't pile on top of the video */
+.reveal .slides section:has(> .cover-video) .cover-sun {
+  opacity: 0.55;
 }
 
 /* — Cover SUN ornament — vivid, glowing like the in-game sunset — */
