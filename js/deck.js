@@ -41,7 +41,8 @@ const SPEAKERS = [
   'abel',   // 21 Postmortem — lecciones    - Módulo 7
   'martin', // 22 Cumplimiento OE           - Módulo 8.1
   'abel',   // 23 Líneas futuras            - Módulo 8.2
-  'abel',   // 24 Recursos / Q&A            - Módulo 8.3
+  'abel',   // 24 Créditos · Animación 3D   - Módulo 8.3
+  'abel',   // 25 Recursos / Q&A            - Módulo 8.3
 ];
 
 const SPEAKER_NAMES = {
