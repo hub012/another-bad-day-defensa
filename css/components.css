@@ -688,11 +688,7 @@
   box-shadow: 0 0 0 2px rgba(43, 226, 102, 0.25);
 }
 
-/* — Focus mode: hide badge along with other chrome — */
-.focus-mode .speaker-badge {
-  opacity: 0;
-  pointer-events: none;
-}
+/* — Focus mode: keep speaker badge visible (tribunal debe ver quién habla) — */
 
 /* — Transition on slide change (name swap) — */
 .speaker-badge.is-swapping {
