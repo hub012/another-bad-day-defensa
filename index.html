@@ -860,25 +860,22 @@ GameData.money_changed.connect(_on_money_changed)
 
         <div class="three-col stagger" style="margin-top: 28px;">
           <div class="card">
-            <p class="card-title">Lorem ipsum</p>
-            <p class="card-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p class="card-title">Arquitectura event-driven</p>
+            <p class="card-body">Autoloads + Signals permitieron añadir sistemas nuevos (voice lines, juice, progression) sin romper lo anterior. La apuesta técnica fue la correcta.</p>
           </div>
           <div class="card">
-            <p class="card-title">Lorem ipsum</p>
-            <p class="card-body">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="card-title">División de roles limpia</p>
+            <p class="card-body">Martin en arte y dirección visual, Abel en código. Trabajo en paralelo, sin pisarnos. Zero merge hell en ocho meses.</p>
           </div>
           <div class="card">
-            <p class="card-title">Lorem ipsum</p>
-            <p class="card-body">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p class="card-title">Localización desde el día uno</p>
+            <p class="card-body">544 claves ES/EN. Evitamos el refactor doloroso típico de meter i18n al final del proyecto.</p>
           </div>
         </div>
 
-        <p style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 24px;">
-          ⚠ TODO — placeholder. Rellenar con contenido real del postmortem.
-        </p>
-
         <aside class="notes">
-          PLACEHOLDER · El usuario rellenará con contenido real del postmortem (~30s).
+          ~30s.<br/><br/>
+          <strong>Abel:</strong> Tres cosas salieron especialmente bien. Primero, la arquitectura event-driven: cada sistema nuevo encajó sin romper lo anterior. Segundo, Martin y yo dividimos responsabilidades desde el principio — él arte y diseño visual, yo código — y eso nos evitó fricciones de merge. Y tercero, localización desde día uno: meter i18n al final es un dolor que nos ahorramos.
         </aside>
       </section>
 
@@ -889,25 +886,22 @@ GameData.money_changed.connect(_on_money_changed)
 
         <div class="three-col stagger" style="margin-top: 28px;">
           <div class="card">
-            <p class="card-title">Lorem ipsum</p>
-            <p class="card-body">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p class="card-title">Reconfiguración del equipo e impacto en calendario</p>
+            <p class="card-body">Empezamos siendo cuatro y acabamos dos. Reabsorber responsabilidades y recortar scope sobre la marcha tuvo un coste: el proyecto se entregó en convocatoria extraordinaria, no en ordinaria. Preferimos sostener la calidad antes que forzar la fecha con un equipo reducido.</p>
           </div>
           <div class="card">
-            <p class="card-title">Lorem ipsum</p>
-            <p class="card-body">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+            <p class="card-title">Scope inicial demasiado ambicioso</p>
+            <p class="card-body">Tricks, distritos narrativos, leaderboards… tocó cortar. Parte de ese alcance vive hoy en el slide de <em>Hacia delante</em> como trabajo futuro.</p>
           </div>
           <div class="card">
-            <p class="card-title">Lorem ipsum</p>
-            <p class="card-body">Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt.</p>
+            <p class="card-title">Sin testing automatizado</p>
+            <p class="card-body">32 483 líneas de GDScript, cero tests. Los bugs de regresión mordieron en los sprints finales. Deuda técnica reconocida.</p>
           </div>
         </div>
 
-        <p style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 24px;">
-          ⚠ TODO — placeholder. Rellenar con contenido real del postmortem.
-        </p>
-
         <aside class="notes">
-          PLACEHOLDER · El usuario rellenará con contenido real del postmortem (~30s).
+          ~40s.<br/><br/>
+          <strong>Abel:</strong> Honestidad técnica. El equipo pasó de cuatro personas a dos a mitad del proyecto. Eso nos obligó a reabsorber responsabilidades y nos llevó a entregar en convocatoria extraordinaria — fue una decisión consciente: sostener la visión completa antes que forzar la fecha con menos gente. El scope inicial también fue demasiado ambicioso; parte de lo que cortamos lo veréis en "Hacia delante" como trabajo futuro. Y sí, 32 000 líneas sin tests — una deuda técnica que reconozco.
         </aside>
       </section>
 
@@ -919,27 +913,24 @@ GameData.money_changed.connect(_on_money_changed)
         <div class="three-col stagger" style="margin-top: 28px;">
           <div class="card">
             <p class="card-icon">①</p>
-            <p class="card-title">Lorem ipsum</p>
-            <p class="card-body">Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+            <p class="card-title">Scope es el enemigo</p>
+            <p class="card-body">Mejor un vertical slice pulido que tres sistemas a medias. Aprender a cortar fue clave para poder cerrar el proyecto.</p>
           </div>
           <div class="card">
             <p class="card-icon">②</p>
-            <p class="card-title">Lorem ipsum</p>
-            <p class="card-body">Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+            <p class="card-title">Alineación con el tutor = pivote narrativo</p>
+            <p class="card-body">Las primeras iteraciones del juego se veían mecánicamente correctas pero planas. Replanteándolo con el tutor metimos la capa narrativa (rider, voice lines, contexto del día) que cambió completamente la percepción.</p>
           </div>
           <div class="card">
             <p class="card-icon">③</p>
-            <p class="card-title">Lorem ipsum</p>
-            <p class="card-body">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+            <p class="card-title">Equipos pequeños exigen alineación temprana</p>
+            <p class="card-body">En ocho meses no hay margen para fricción sin resolver. Las primeras semanas valen más si se usan para alinear visión que para empezar a producir ya.</p>
           </div>
         </div>
 
-        <p style="font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: 24px;">
-          ⚠ TODO — placeholder. Rellenar con contenido real del postmortem.
-        </p>
-
         <aside class="notes">
-          PLACEHOLDER · El usuario rellenará con contenido real del postmortem (~30s).
+          ~30s.<br/><br/>
+          <strong>Abel:</strong> Tres lecciones que me llevo. Primera, scope es el enemigo — aprendí a cortar. Segunda, alineación con el tutor: las primeras iteraciones del juego se veían planas, y fue la discusión con él lo que nos llevó a meter la capa narrativa que le da personalidad al juego. Tercera, equipos pequeños exigen alineación temprana: en un proyecto corto no hay margen para fricción sin resolver, y eso es lo que más me llevo como aprendizaje.
         </aside>
       </section>
 
